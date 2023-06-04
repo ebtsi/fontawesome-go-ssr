@@ -12,6 +12,8 @@ var styleMap = map[string]string{
 	"fal": "light",
 	"far": "regular",
 	"fas": "solid",
+	"fad": "duotone",
+	"fat": "thin",
 }
 
 // Library is a container for Font Awesome icons.
@@ -48,20 +50,24 @@ func (fa *Library) Icon(name string) (Icon, error) {
 }
 
 // SVG returns the given icon as a raw SVG element.
-func (fa *Library) SVG(prefix, name string) (template.HTML, error) {
+// Edited from original to only return template.HTML and Println any errors
+func (fa *Library) SVG(prefix, name string) (template.HTML) {
 	icon, err := fa.Icon(name)
 	if err != nil {
-		return template.HTML(""), err
+		fmt.Println("FA Error:", err)
+		return template.HTML("")
 	}
 
 	style, ok := styleMap[prefix]
 	if !ok {
-		return template.HTML(""), fmt.Errorf("No such Font Awesome icon style: '%v'", prefix)
+		fmt.Println("FA Error: No such icon style:", prefix)
+		return template.HTML("")
 	}
 
 	svg, ok := icon.SVG[style]
 	if !ok {
-		return template.HTML(""), fmt.Errorf("Font Awesome '%v' icon doesn't have style: '%v'", name, prefix)
+		fmt.Println("FA Error:", name, "icon is missing style", prefix)
+		return template.HTML("")
 	}
 
 	return template.HTML(svg.Raw), nil
