@@ -19,7 +19,7 @@ type Icon struct {
 type SVG struct {
 	LastModified int      `json:"last_modified"`
 	Raw          string   `json:"raw"`
-	ViewBox      []string `json:"viewBox"`
+	ViewBox      []int    `json:"viewBox"`
 	Width        int      `json:"width"`
 	Height       int      `json:"height"`
 	Path         string   `json:"path"`
