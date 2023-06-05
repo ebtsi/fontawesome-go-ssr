@@ -70,5 +70,5 @@ func (fa *Library) SVG(prefix, name string) (template.HTML) {
 		return template.HTML("")
 	}
 
-	return template.HTML(svg.Raw), nil
+	return template.HTML(svg.Raw)
 }
