@@ -22,7 +22,6 @@ type SVG struct {
 	ViewBox      []int    `json:"viewBox"`
 	Width        int      `json:"width"`
 	Height       int      `json:"height"`
-	Path         string   `json:"path"`
 }
 
 // TemplateIcon is how a Font Awesome icon is defined in a template.Template.
